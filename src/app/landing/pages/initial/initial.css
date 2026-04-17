@@ -1,0 +1,86 @@
+/* ============================================================
+   Solo se conservan reglas que no tienen equivalente directo
+   en clases de utilidad de Tailwind v4:
+   - Estado scrolled del header (Angular class-binding)
+   - Pseudo-elementos ::before / ::after con content dinámico
+   - @keyframes y animaciones personalizadas
+   - Scroll infinito de tecnologías
+   ============================================================ */
+
+/* --- Header scrolled state (driven by Angular [class.scrolled]) --- */
+header.scrolled {
+  background: rgba(9, 9, 11, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgba(39, 39, 42, 0.8);
+}
+
+/* --- Hero grid background --- */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(249, 115, 22, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* --- Service card top-edge glow on hover (::before) --- */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f97316, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* --- Testimonial decorative quote mark (::after) --- */
+.testimonial-card::after {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 5rem;
+  color: rgba(249, 115, 22, 0.06);
+  font-family: Georgia, serif;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* --- Infinite tech scroll animation --- */
+.tech-scroll {
+  animation: scroll-left 30s linear infinite;
+}
+
+.tech-scroll:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* --- Custom fade animations (Tailwind doesn't ship these) --- */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease both;
+}
