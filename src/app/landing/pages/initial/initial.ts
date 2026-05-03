@@ -1,9 +1,10 @@
 import { Component, signal, HostListener, computed, afterNextRender } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ContactForm } from "../../components/contact-form/contact-form";
 
 @Component({
   selector: 'app-initial',
-  imports: [CommonModule],
+  imports: [CommonModule, ContactForm],
   templateUrl: './initial.html',
   styleUrl: './initial.css',
 })

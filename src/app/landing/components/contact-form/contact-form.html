@@ -1,0 +1,78 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-2">
+  <div class="grid sm:grid-cols-2 gap-4">
+    <div>
+      <label class="block text-[0.8rem] font-medium text-zinc-400 mb-[0.4rem]">Nombre <b class="text-red-500">*</b></label>
+      <input
+        type="text"
+        formControlName="name"
+        class="w-full bg-zinc-950 border border-zinc-700 rounded-[10px] px-4 py-3 text-white text-[0.9rem] outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_0_3px_rgba(249,115,22,0.08)] font-[inherit]"
+        placeholder="Tu nombre"
+      />
+    </div>
+    <div>
+      <label class="block text-[0.8rem] font-medium text-zinc-400 mb-[0.4rem]">Empresa</label>
+      <input
+        type="text"
+        formControlName="company"
+        class="w-full bg-zinc-950 border border-zinc-700 rounded-[10px] px-4 py-3 text-white text-[0.9rem] outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_0_3px_rgba(249,115,22,0.08)] font-[inherit]"
+        placeholder="Tu empresa"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-[0.8rem] font-medium text-zinc-400 mb-[0.4rem]">Email <b class="text-red-500">*</b></label>
+    <input
+      type="email"
+      formControlName="email"
+      class="w-full bg-zinc-950 border border-zinc-700 rounded-[10px] px-4 py-3 text-white text-[0.9rem] outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_0_3px_rgba(249,115,22,0.08)] font-[inherit]"
+      placeholder="tu@empresa.com"
+    />
+  </div>
+  <div>
+    <label class="block text-[0.8rem] font-medium text-zinc-400 mb-[0.4rem]"
+      >Servicio de interés</label
+    >
+    <select
+      formControlName="service"
+      class="w-full bg-zinc-950 border border-zinc-700 rounded-[10px] px-4 py-3 text-white text-[0.9rem] outline-none transition-[border-color,box-shadow] duration-200 focus:border-orange-500/50 focus:shadow-[0_0_0_3px_rgba(249,115,22,0.08)] font-[inherit]"
+    >
+      <option value="" class="bg-zinc-900">Selecciona un servicio</option>
+      @for (service of services; track service.title) {
+        <option [value]="service.title" class="bg-zinc-900">{{ service.title }}</option>
+      }
+    </select>
+  </div>
+  <div>
+    <label class="block text-[0.8rem] font-medium text-zinc-400 mb-[0.4rem]"
+      >Cuéntanos tu proyecto <b class="text-red-500">*</b></label
+    >
+    <textarea
+      formControlName="projectDescription"
+      class="w-full bg-zinc-950 border border-zinc-700 rounded-[10px] px-4 py-3 text-white text-[0.9rem] outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_0_3px_rgba(249,115,22,0.08)] font-[inherit] min-h-[120px] resize-none"
+      placeholder="Describe tu proyecto, objetivos y tiempo estimado..."
+    ></textarea>
+  </div>
+
+  @if (!contactForm.valid && contactForm.touched) {
+    <div class="w-full flex justify-center items-center">
+      <span class="text-red-500 font-bold text-xs">Complete todos los campos obligatorios *</span>
+    </div>
+  }
+
+  <button
+    type="submit"
+    class="w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 group bg-linear-to-br from-orange-500 to-orange-600 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_35px_rgba(249,115,22,0.5)] hover:-translate-y-px active:translate-y-0 transition-all duration-300"
+  >
+    Enviar mensaje
+    <svg
+      class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  </button>
+</form>
